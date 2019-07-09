@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<endpoint name="fetchproductdetails_ep" xmlns="http://ws.apache.org/ns/synapse">
-    <address uri="http://dsk374-p1:8290/services/fetchproductdetails"/>
-</endpoint>
