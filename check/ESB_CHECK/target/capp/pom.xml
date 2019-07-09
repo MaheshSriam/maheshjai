@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example.ESB_CHECK</groupId>
+  <artifactId>ESB_CHECK_module</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>ESB_CHECK_module</name>
+  <description>ESB_CHECK_module</description>
+  <modules>
+    <module>artifacts\api\CalResults</module>
+    <module>artifacts\endpoint\Cal_Ep</module>
+  </modules>
+</project>

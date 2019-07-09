@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/CheckResults" name="CalResults" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" protocol="http">
+        <inSequence>
+            <log level="custom" separator=",">
+                <property expression="$body" name="Cal"/>
+            </log>
+            <property expression="json-eval($.CheckResults.num1)" name="N1" scope="default" type="STRING"/>
+            <property expression="json-eval($.CheckResults.num2)" name="N2" scope="default" type="STRING"/>
+            <log level="custom" separator=",">
+                <property expression="fn:concat('the number is -',get-property('N1'))" name="in_value"/>
+                <property expression="fn:concat('the number is -',get-property('N2'))" name="in_value"/>
+            </log>
+            <payloadFactory media-type="xml">
+                <format>
+                    <tem:Add xmlns:tem="http://tempuri.org/">
+                        <tem:intA>$1</tem:intA>
+                        <tem:intB>$2</tem:intB>
+                    </tem:Add>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="get-property('N1')"/>
+                    <arg evaluator="xml" expression="get-property('N2')"/>
+                </args>
+            </payloadFactory>
+            <property name="SOAPAction" scope="transport" type="STRING" value="http://tempuri.org/Add"/>
+            <property name="ContentType" scope="axis2" type="STRING" value="text/xml"/>
+            <log>
+                <property expression="$body" name=":: tem:Add input ::"/>
+            </log>
+            <call>
+                <endpoint key="Cal_Ep"/>
+            </call>
+            <log>
+                <property expression="$body" name=":: tem:Add output ::"/>
+            </log>
+            <property name="ContentType" scope="axis2" type="STRING" value="application/json"/>
+            <property name="messageType" scope="axis2" type="STRING" value="application/json"/>
+            <respond/>
+        </inSequence>
+        <outSequence/>
+        <faultSequence/>
+    </resource>
+</api>
